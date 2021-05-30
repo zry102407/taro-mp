@@ -58,6 +58,18 @@ const config = {
           generateScopedName: '[name]__[local]___[hash:base64:5]'
         }
       }
+    },
+    devServer: {
+      host: '',
+      port: '10086',
+      proxy: [
+        {
+          context: "/lingdingApi",
+          target: "http://dcx.fzldrj.com",
+          changeOrigin: true,
+          secure: false
+        }
+      ]
     }
   }
 }

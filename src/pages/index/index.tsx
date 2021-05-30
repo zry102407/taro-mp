@@ -1,32 +1,58 @@
-import { Component } from 'react'
-import { View, Text } from '@tarojs/components'
-import { AtButton } from 'taro-ui'
+import { Component } from "react";
+import { View, Text, Swiper, SwiperItem } from "@tarojs/components";
+import { AtButton } from "taro-ui";
 
-import "taro-ui/dist/style/components/button.scss" // 按需引入
-import './index.scss'
+import "taro-ui/dist/style/components/button.scss"; // 按需引入
+import "./index.scss";
+import TabBar from "../../custom-tab-bar/custom-tab-bar";
 
-export default class Index extends Component {
+export default class Index extends Component<any, any> {
+  constructor(props) {
+    super(props);
+    this.state = {
+      bannerList: [1, 2, 3]
+    };
+  }
+  componentWillMount() {}
 
-  componentWillMount () { }
+  componentDidMount() {}
 
-  componentDidMount () { }
+  componentWillUnmount() {}
 
-  componentWillUnmount () { }
+  componentDidShow() {}
 
-  componentDidShow () { }
+  componentDidHide() {}
 
-  componentDidHide () { }
-
-  render () {
+  render() {
+    const swiperItems = this.state.bannerList.map(item => {
+      const src = `../../assets/banner${item}.jpg`;
+      return (
+        <SwiperItem key={item}>
+          <img src={require(`../../assets/banner${item}.jpg`)} alt="" />
+        </SwiperItem>
+      );
+    });
     return (
-      <View className='index'>
-        <Text>Hello world!</Text>
-        <AtButton type='primary'>I need Taro UI</AtButton>
-        <Text>Taro UI 支持 Vue 了吗？</Text>
-        <AtButton type='primary' circle={true}>支持</AtButton>
-        <Text>共建？</Text>
-        <AtButton type='secondary' circle={true}>来</AtButton>
+      <View className="index">
+        <Swiper
+          className="lingding-swiper"
+          indicatorColor="#999"
+          indicatorActiveColor="#333"
+          circular
+          autoplay
+        >
+          {swiperItems}
+          {/* <SwiperItem>
+            <View className="demo-text-1">1</View>
+          </SwiperItem>
+          <SwiperItem>
+            <View className="demo-text-2">2</View>
+          </SwiperItem>
+          <SwiperItem>
+            <View className="demo-text-3">3</View>
+          </SwiperItem> */}
+        </Swiper>
       </View>
-    )
+    );
   }
 }
