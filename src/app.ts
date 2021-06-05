@@ -7,7 +7,7 @@ class App extends Component {
   componentDidMount() { }
 
   componentDidShow() {
-    console.log(123)
+
   }
 
   componentDidHide() { }

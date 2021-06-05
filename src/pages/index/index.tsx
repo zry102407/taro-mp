@@ -5,6 +5,8 @@ import { AtButton } from "taro-ui";
 import "taro-ui/dist/style/components/button.scss"; // 按需引入
 import "./index.scss";
 import TabBar from "../../custom-tab-bar/custom-tab-bar";
+import HomeHeader from "../../components/home-header/home-header";
+import HomeNotice from "../../components/home-notice/home-notice";
 
 export default class Index extends Component<any, any> {
   constructor(props) {
@@ -34,24 +36,11 @@ export default class Index extends Component<any, any> {
     });
     return (
       <View className="index">
-        <Swiper
-          className="lingding-swiper"
-          indicatorColor="#999"
-          indicatorActiveColor="#333"
-          circular
-          autoplay
-        >
+        <HomeHeader></HomeHeader>
+        <Swiper className="lingding-swiper" circular autoplay>
           {swiperItems}
-          {/* <SwiperItem>
-            <View className="demo-text-1">1</View>
-          </SwiperItem>
-          <SwiperItem>
-            <View className="demo-text-2">2</View>
-          </SwiperItem>
-          <SwiperItem>
-            <View className="demo-text-3">3</View>
-          </SwiperItem> */}
         </Swiper>
+        <HomeNotice></HomeNotice>
       </View>
     );
   }

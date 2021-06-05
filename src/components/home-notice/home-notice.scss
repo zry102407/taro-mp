@@ -1,0 +1,32 @@
+.notice-box {
+  padding: 0 20px;
+  margin: 8px 20px 0;
+  border: 1px solid #fab35e;
+  background-color: #fff9f2;
+  border-radius: 40px;
+  position: relative;
+  overflow: hidden;
+  .notice-icon {
+    position: absolute;
+    left: 20px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .notice-msg {
+    .swiper-container {
+      height: 80px;
+      position: relative;
+    }
+    position: relative;
+    .swiper-item {
+      padding-left: 20px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      height: 80px !important;
+      font-size: 14px;
+    }
+  }
+}
