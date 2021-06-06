@@ -1,0 +1,38 @@
+.favorite-box {
+  text-align: center;
+  padding: 0 8px;
+  .favorite-icon {
+    width: 375px;
+    height: 32.5px;
+    margin: 20px 0;
+  }
+  .item-container {
+    width: 100%;
+  }
+  .good-item {
+    text-align: center;
+    border-radius: 20px;
+    background-color: #fff;
+    margin: 8px;
+    max-width: 47%;
+    .taro-img__widthfix {
+      width: 180px;
+      height: 180px;
+      margin-bottom: 8px;
+    }
+    .item-name {
+      font-size: 28px;
+      line-height: 44px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .item-price {
+      color: #ff900b;
+      font-size: 40px;
+      text-align: left;
+      padding: 0 6px;
+      font-family: num;
+    }
+  }
+}

@@ -19,13 +19,44 @@ export default class HomeClassify extends Component<{}, any> {
   render() {
     return (
       <>
-        <View
-          className="notice-box"
-          style={{
-            height: this.state.height + "px",
-            lineHeight: this.state.height + "px"
-          }}
-        ></View>
+        <View className="classify">
+          <View className="classify-box at-row">
+            <View className="at-col classify-item">
+              <Image
+                src={require("../../assets/101.png")}
+                mode="widthFix"
+              ></Image>
+              <p>海鲜串</p>
+            </View>
+            <View className="at-col classify-item">
+              <Image
+                src={require("../../assets/112.png")}
+                mode="widthFix"
+              ></Image>
+              <p>肉串</p>
+            </View>
+            <View className="at-col classify-item">
+              <Image
+                src={require("../../assets/123.png")}
+                mode="widthFix"
+              ></Image>
+              <p>调味串</p>
+            </View>
+            <View className="at-col classify-item">
+              <Image
+                src={require("../../assets/134.png")}
+                mode="widthFix"
+              ></Image>
+              <p>小把串</p>
+            </View>
+          </View>
+          <View className="recharge-box">
+            <Image
+              src={require("../../assets/img_Recharge.png")}
+              mode="widthFix"
+            ></Image>
+          </View>
+        </View>
       </>
     );
   }

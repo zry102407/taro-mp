@@ -7,6 +7,8 @@ import "./index.scss";
 import TabBar from "../../custom-tab-bar/custom-tab-bar";
 import HomeHeader from "../../components/home-header/home-header";
 import HomeNotice from "../../components/home-notice/home-notice";
+import HomeClassify from "../../components/home-classify/home-classify";
+import HomeFavorite from "../../components/home-favorite/home-favorite";
 
 export default class Index extends Component<any, any> {
   constructor(props) {
@@ -41,6 +43,8 @@ export default class Index extends Component<any, any> {
           {swiperItems}
         </Swiper>
         <HomeNotice></HomeNotice>
+        <HomeClassify></HomeClassify>
+        <HomeFavorite></HomeFavorite>
       </View>
     );
   }

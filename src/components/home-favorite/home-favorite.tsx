@@ -7,8 +7,7 @@ export default class HomeFavorite extends Component<{}, any> {
     super(props);
     this.state = {
       searchValue: "",
-      height: 37,
-      iconHeight: 20
+      itemList: [1, 2, 3]
     };
   }
 
@@ -17,15 +16,28 @@ export default class HomeFavorite extends Component<{}, any> {
   searchChange() {}
 
   render() {
+    const items = this.state.itemList.map(item => {
+      return (
+        <View className="at-col good-item at-col-6" key={item}>
+          <Image
+            src={require("../../assets/xxclogo.png")}
+            mode="widthFix"
+          ></Image>
+          <p className="item-name">烤事君小黄鱼串</p>
+          <p className="item-price">登陆可见价格</p>
+        </View>
+      );
+    });
     return (
       <>
-        <View
-          className="notice-box"
-          style={{
-            height: this.state.height + "px",
-            lineHeight: this.state.height + "px"
-          }}
-        ></View>
+        <View className="favorite-box">
+          <Image
+            className="favorite-icon"
+            mode="widthFix"
+            src={require("../../assets/title_xi.png")}
+          ></Image>
+          <View className="at-row at-row--wrap item-container">{items}</View>
+        </View>
       </>
     );
   }
