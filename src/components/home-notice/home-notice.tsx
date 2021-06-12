@@ -31,7 +31,11 @@ export default class HomeNotice extends Component<{}, homeNoticeType> {
 
   render() {
     const swipterItems = this.state.noticeList.map(item => {
-      return <SwiperItem className="swiper-item">{item}</SwiperItem>;
+      return (
+        <SwiperItem className="swiper-item" key={item}>
+          {item}
+        </SwiperItem>
+      );
     });
     return (
       <>

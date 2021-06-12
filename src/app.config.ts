@@ -1,6 +1,11 @@
 export default {
   pages: [
-    'pages/index/index'
+    'pages/index/index',
+    'pages/classify/classify',
+    'pages/cart/cart',
+    'pages/alwaysBuy/alwaysBuy',
+    'pages/userCenter/userCenter',
+    'pages/login/login',
   ],
   tabBar: {
     custom: true,
@@ -11,19 +16,19 @@ export default {
         text: '主页'
       },
       {
-        pagePath: 'pages/index/classify',
+        pagePath: 'pages/classify/classify',
         text: '分类'
       },
       {
-        pagePath: 'pages/index/cart',
+        pagePath: 'pages/cart/cart',
         text: '购物车'
       },
       {
-        pagePath: 'pages/index/alwaysBut',
+        pagePath: 'pages/alwaysBuy/alwaysBuy',
         text: '常购'
       },
       {
-        pagePath: 'pages/index/userCenter',
+        pagePath: 'pages/userCenter/userCenter',
         text: '我的'
       }
     ]
