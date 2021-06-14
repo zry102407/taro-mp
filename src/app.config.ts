@@ -6,6 +6,7 @@ export default {
     'pages/alwaysBuy/alwaysBuy',
     'pages/userCenter/userCenter',
     'pages/login/login',
+    'pages/serve/serve',
   ],
   tabBar: {
     custom: true,

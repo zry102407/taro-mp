@@ -70,14 +70,34 @@
       }
     }
     .login-reg {
-      font-size: 28px;
+      font-size: 32px;
       color: #03a9f4;
       text-align: center;
-      line-height: 38px;
+      line-height: 46px;
       .reg-check {
         display: block;
         height: 44px;
         line-height: 38px;
+        &.at-checkbox {
+          &::before {
+            border-top: none;
+          }
+          &::after{
+            border-bottom: none
+          }
+          .at-checkbox__option {
+            height: 38px;
+            line-height: 38px;
+            .at-checkbox__option-wrap {
+              padding: 0;
+              padding-left: 180px;
+              .at-checkbox__title {
+                font-size: 32px;
+                color: inherit;
+              }
+            }
+          }
+        }
         input {
           display: inline-block;
           vertical-align: middle;

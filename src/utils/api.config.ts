@@ -38,8 +38,12 @@ export default {
         let option = { url, data }
         return this.baseOptions(option)
     },
-    post: function (url, data, contentType) {
-        let params = { url, data, contentType }
+    post: function (url, data) {
+        let params = { url, data, contentType: 'application/x-www-form-urlencoded' }
+        return this.baseOptions(params, 'POST')
+    },
+    postByJson: function(url, data) {
+        let params = { url, data, contentType: 'application/json' }
         return this.baseOptions(params, 'POST')
     }
 }

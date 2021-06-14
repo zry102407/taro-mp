@@ -1,0 +1,26 @@
+.serve-box {
+  .serve-top {
+    position: relative;
+    text-align: center;
+    border-bottom: 1px solid #f2f2f2;
+    height: 120px;
+    font-size: 36px;
+    .back-icon {
+      position: absolute;
+      left: 20px;
+    }
+  }
+  .serve-body {
+    padding: 0 5%;
+    .serve-item {
+      border-bottom: 1px dotted #e5e5e5;
+      font-size: 32px;
+      color: #666;
+      height: 110px;
+      line-height: 110px;
+      .serve-title {
+        width: 160px;
+      }
+    }
+  }
+}

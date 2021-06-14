@@ -1,3 +1,4 @@
+import Taro from '@tarojs/taro'
 import { Component } from "react";
 import { View, Image } from "@tarojs/components";
 import { AtIcon, AtInput } from "taro-ui";
@@ -18,6 +19,12 @@ export default class HomeHeader extends Component<{}, homeHeaderType> {
   }
 
   componentDidMount() {}
+
+  toServe() {
+    Taro.navigateTo({
+      url: '/pages/serve/serve'
+    })
+  }
 
   searchChange() {}
 
@@ -53,6 +60,7 @@ export default class HomeHeader extends Component<{}, homeHeaderType> {
           </View>
           <View className="header-icon">
             <Image
+              onClick={this.toServe}
               style={{ marginTop: "-1px" }}
               className="header-image"
               src={require("../../assets/icon_serve.png")}

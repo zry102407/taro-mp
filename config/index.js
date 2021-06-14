@@ -64,13 +64,10 @@ const config = {
       port: '10086',
       proxy: [
         {
-          context: "/lingdingApi",
-          target: "http://dcx.fzldrj.com:7030/Action/",
+          context: "/Action",
+          target: "http://dcx.fzldrj.com:7030/",
           changeOrigin: true,
           secure: false,
-          pathRewrite: {
-            '^/lingdingApi': '/'
-          }
         }
       ]
     }
