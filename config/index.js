@@ -65,9 +65,12 @@ const config = {
       proxy: [
         {
           context: "/lingdingApi",
-          target: "http://dcx.fzldrj.com",
+          target: "http://dcx.fzldrj.com:7030/Action/",
           changeOrigin: true,
-          secure: false
+          secure: false,
+          pathRewrite: {
+            '^/lingdingApi': '/'
+          }
         }
       ]
     }

@@ -1,65 +1,53 @@
 import Taro from "@tarojs/taro";
 
-import { AtButton } from "taro-ui";
-import { View } from "@tarojs/components";
+import { AtInput, AtButton, AtIcon, AtCheckbox } from "taro-ui";
+import { View, Image } from "@tarojs/components";
 import "./login.scss";
 import { Component } from "react";
-
-const { _login } = require("../../utils/api.service.ts");
+import api from "../../service/api.service";
 
 export default class Login extends Component<any, any> {
   constructor(props) {
     super(props);
     this.state = {
-      loading: false
+      account: "",
+      password: "",
+      regCheck: false,
+      checkboxOption: [
+        {
+          value: "pwdReg",
+          label: "记住密码"
+        }
+      ]
     };
   }
 
-  tobegin(res) {
-    if (res.detail.userInfo) {
-      // 返回的信息中包含用户信息则证明用户允许获取信息授权
-      console.log("授权成功");
+  handleChange(key, value) {
+    if (key === "account") {
       this.setState({
-        loading: true
+        account: value
       });
-      // 保存用户信息微信登录
-      Taro.setStorageSync("userInfo", res.detail.userInfo);
-      Taro.login().then(resLogin => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        this.setState({
-          loading: false
-        });
-        if (resLogin.code) {
-          // 登录
-          _login(
-            { ...res.detail, code: resLogin.code },
-            result => {
-              if (result.data.status === 200) {
-                // 设置 token
-                Taro.setStorageSync("token", result.data.data.token);
-                // 登录成功返回首页并刷新首页数据
-                Taro.switchTab({ url: "/pages/index/index" });
-              } else {
-                Taro.showToast({
-                  title: "登录失败，请稍后重试",
-                  icon: "none",
-                  mask: true
-                });
-              }
-            },
-            () => {
-              Taro.showToast({
-                title: "登录失败，请稍后重试",
-                icon: "none",
-                mask: true
-              });
-            }
-          );
-        }
+    } else if (key === "password") {
+      this.setState({
+        password: value
       });
-    } else {
-      Taro.switchTab({ url: "/pages/index/index" });
     }
+    return value;
+  }
+
+  onLogin() {
+    const params = {
+      account: this.state.account,
+      password: this.state.password
+    };
+    api
+      .login(params)
+      .then(res => {
+        console.log(res);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   componentWillMount() {}
@@ -74,23 +62,59 @@ export default class Login extends Component<any, any> {
 
   render() {
     return (
-      <View className="login body">
-        <View className="textAlign need">需要使用你的微信昵称和头像</View>
-        <AtButton
-          className="at-col defaultWidth button"
-          loading={this.state.loading}
-          openType="getUserInfo"
-          onGetUserInfo={this.tobegin.bind(this)}
-        >
-          点击授权
-        </AtButton>
-        <AtButton
-          type="secondary"
-          className="at-col defaultWidth"
-          onClick={() => Taro.switchTab({ url: "/pages/index/index" })}
-        >
-          暂不登录
-        </AtButton>
+      <View className="login-body">
+        <View className="login-bg">
+          <Image
+            src={require("../../assets/bg_userinfo.png")}
+            mode="widthFix"
+          ></Image>
+        </View>
+        <View className="login-box">
+          <View className="login-logo">
+            <Image
+              src={require("../../assets/xxclogo.png")}
+              mode="widthFix"
+            ></Image>
+          </View>
+          <View className="login-form">
+            <View className="login-input at-row">
+              <AtIcon value="iphone" size="30" color="#7f848f"></AtIcon>
+              <AtInput
+                name="value"
+                title=""
+                className="at-col at-col--auto"
+                border={false}
+                type="text"
+                placeholder="请输入手机号"
+                value={this.state.account}
+                onChange={this.handleChange.bind(this, "account")}
+              />
+            </View>
+            <View className="login-input at-row">
+              <AtIcon value="lock" size="30" color="#7f848f"></AtIcon>
+              <AtInput
+                name="value"
+                title=""
+                className="at-col at-col--auto"
+                border={false}
+                type="password"
+                placeholder="请输入密码"
+                value={this.state.password}
+                onChange={this.handleChange.bind(this, "password")}
+              />
+            </View>
+            <AtButton className="login-btn" onClick={this.onLogin.bind(this)}>
+              登 录
+            </AtButton>
+            <View className="login-reg">
+              <label className="reg-check">
+                记住密码
+                <input type="checkbox" value={this.state.regCheck} />
+              </label>
+              <a href="/dhxt/dhzc.aspx?tjm=">快速注册</a>
+            </View>
+          </View>
+        </View>
       </View>
     );
   }

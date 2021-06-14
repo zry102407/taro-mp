@@ -1,0 +1,93 @@
+.login-body {
+  position: relative;
+  .login-bg {
+    height: 420px;
+    overflow: hidden;
+    .taro-img__widthfix {
+      width: 100%;
+      height: 100%;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+  .login-box {
+    position: absolute;
+    width: 91%;
+    left: 50%;
+    margin-left: -47%;
+    background: #fff;
+    border-radius: 40px;
+    box-shadow: 0 8px 20px 0px #0000002e;
+    padding: 84px 2% 80px 2%;
+    top: 200px;
+    margin: 0 0 0px -47%;
+    .login-logo {
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      border-radius: 400px;
+      top: -80px;
+      left: 50%;
+      margin-left: -80px;
+      box-shadow: 0 8px 20px 0px #0000002e;
+      .taro-img__widthfix {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+      }
+    }
+    .login-form {
+      overflow: hidden;
+      .login-input {
+        height: 100px;
+        border-bottom: 1px solid #f5f5f5;
+        margin: 20px;
+        font-size: 32px;
+        font-family: num;
+        text-indent: 20px;
+        .at-icon {
+          margin-top: 18px;
+          font-size: 50px;
+        }
+      }
+      .login-btn {
+        margin: 80px auto 60px;
+        width: 94%;
+        text-align: center;
+        color: #fff;
+        font-size: 32px;
+        border-radius: 200px;
+        background-image: linear-gradient(to right, #f09819, #ff512f);
+        height: 100px;
+        line-height: 100px;
+        border: none;
+        letter-spacing: 5px;
+        .at-button__wxbutton {
+          box-shadow: 0 4px 10px 0px #fd592c42;
+        }
+      }
+    }
+    .login-reg {
+      font-size: 28px;
+      color: #03a9f4;
+      text-align: center;
+      line-height: 38px;
+      .reg-check {
+        display: block;
+        height: 44px;
+        line-height: 38px;
+        input {
+          display: inline-block;
+          vertical-align: middle;
+          margin-left: 4px;
+          margin-top: -6px;
+        }
+      }
+      a {
+        color: inherit;
+      }
+    }
+  }
+}
