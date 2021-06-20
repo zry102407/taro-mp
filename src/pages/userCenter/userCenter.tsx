@@ -1,6 +1,7 @@
 import { Component } from "react";
 import { View, Image } from "@tarojs/components";
 import { AtAvatar } from "taro-ui";
+import TabBar from "../../custom-tab-bar/custom-tab-bar";
 
 import "taro-ui/dist/style/components/button.scss"; // 按需引入
 import "./userCenter.scss";
@@ -24,13 +25,13 @@ export default class UserCenter extends Component<any, any> {
 
   render() {
     return (
-      <View className='user-center'>
-        <View className='user-top'>
+      <View className="user-center">
+        <View className="user-top">
           <Image
             src={require("../../assets/bg_userinfo.png")}
-            mode='widthFix'
+            mode="widthFix"
           ></Image>
-          <View className='user-icon'>
+          <View className="user-icon">
             <AtAvatar
               circle
               image={require("../../assets/default_head.png")}
@@ -38,6 +39,7 @@ export default class UserCenter extends Component<any, any> {
             <p className="user-name">冰梦烧烤</p>
           </View>
         </View>
+        <TabBar></TabBar>
       </View>
     );
   }

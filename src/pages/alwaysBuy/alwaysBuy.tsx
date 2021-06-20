@@ -23,6 +23,10 @@ export default class AlwaysBuy extends Component<any, any> {
   componentDidHide() {}
 
   render() {
-    return <View className="classify"></View>;
+    return (
+      <View className="classify">
+        <TabBar current={1}></TabBar>
+      </View>
+    );
   }
 }

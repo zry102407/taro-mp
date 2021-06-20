@@ -10,7 +10,7 @@ export default {
         let { url, data } = params
         let contentType = 'text/plain; charset=utf-8'
         contentType = params.contentType || contentType
-        const option = {
+        const option: any = {
             isShowLoading: false,
             loadingText: '正在加载',
             url: base + url,
@@ -42,7 +42,7 @@ export default {
         let params = { url, data, contentType: 'application/x-www-form-urlencoded' }
         return this.baseOptions(params, 'POST')
     },
-    postByJson: function(url, data) {
+    postByJson: function (url, data) {
         let params = { url, data, contentType: 'application/json' }
         return this.baseOptions(params, 'POST')
     }

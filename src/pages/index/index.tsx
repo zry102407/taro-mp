@@ -45,6 +45,7 @@ export default class Index extends Component<any, any> {
         <HomeNotice></HomeNotice>
         <HomeClassify></HomeClassify>
         <HomeFavorite></HomeFavorite>
+        <TabBar></TabBar>
       </View>
     );
   }
