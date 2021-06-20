@@ -1,10 +1,13 @@
 const utils = {
     storage: {
       get: (key) => {
-        return JSON.parse(localStorage.getItem(key) || '{}')
+        return localStorage.getItem(key) ? JSON.parse(localStorage.getItem(key)) : ''
       },
       set: (key, value) => {
         localStorage.setItem(key, JSON.stringify(value))
+      },
+      removeItem: (key) => {
+        localStorage.removeItem(key)
       }
     }
 }
@@ -34,7 +37,7 @@ export const logError = (name, action, info?) => {
         let deviceInfo = wx.getSystemInfoSync()
         var device = JSON.stringify(deviceInfo)
     } catch (e) {
-        console.error('not support getSystemInfoSync api', err.message)
+        console.error('not support getSystemInfoSync api', e.message)
     }
     let time = formatTime(new Date())
     console.error(time, name, action, info, device)

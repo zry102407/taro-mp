@@ -1,6 +1,6 @@
 import { Component } from "react";
 import { View, Image, Text } from "@tarojs/components";
-import { AtAvatar } from "taro-ui";
+import Taro from '@tarojs/taro'
 
 import "taro-ui/dist/style/components/button.scss"; // 按需引入
 import "./serve.scss";
@@ -22,11 +22,15 @@ export default class UserCenter extends Component<any, any> {
 
   componentDidHide() {}
 
+  back() {
+    Taro.navigateBack()
+  }
+
   render() {
     return (
       <View className='serve-box'>
         <View className="serve-top">
-          <Text className="back-icon">{'<'}</Text>
+          <Text onClick={this.back} className="back-icon"></Text>
           <Text>联系客服</Text>
         </View>
         <View className="serve-body">
