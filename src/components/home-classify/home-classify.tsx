@@ -19,7 +19,7 @@ export default class HomeClassify extends Component<{}, any> {
   render() {
     return (
       <>
-        <View className="classify">
+        <View className="home-classify">
           <View className="classify-box at-row">
             <View className="at-col classify-item">
               <Image

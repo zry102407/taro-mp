@@ -24,7 +24,7 @@ export default class Cart extends Component<any, any> {
 
   render() {
     return (
-      <View className="classify">
+      <View className="cart">
         <TabBar></TabBar>
       </View>
     );

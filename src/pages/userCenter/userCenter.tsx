@@ -26,7 +26,6 @@ export default class UserCenter extends Component<any, any> {
   componentWillUnmount() {}
 
   componentDidShow() {
-    console.log(321);
     this.init();
   }
 
@@ -100,7 +99,7 @@ export default class UserCenter extends Component<any, any> {
   handleTab(type) {
     Taro.navigateTo({
       url: `/pages/webview/webview?type=${type}`
-    })
+    });
   }
 
   handleTabClick(type) {
@@ -125,72 +124,81 @@ export default class UserCenter extends Component<any, any> {
           <AtListItem
             key={item.zmenuname}
             onClick={this.handleTabClick.bind(this, item.zmenuname)}
-            className='user-tab-item'
+            className="user-tab-item"
             title={item.zmenuname}
-            arrow='right'
+            arrow="right"
             thumb={`${item.imgurl}`}
           />
         );
       });
     }
     return (
-      <View className='user-center'>
+      <View className="user-center">
         <AtMessage></AtMessage>
         {this.state.userInfo.userinfo && (
           <>
-            <View className='user-top'>
+            <View className="user-top">
               <Image
                 src={require("../../assets/bg_userinfo.png")}
-                mode='widthFix'
+                mode="widthFix"
               ></Image>
-              <View className='user-icon'>
+              <View className="user-icon">
                 <AtAvatar
                   circle
                   image={require("../../assets/default_head.png")}
                 ></AtAvatar>
-                <p className='user-name'>{this.state.userInfo.userinfo.khmc}</p>
+                <p className="user-name">{this.state.userInfo.userinfo.khmc}</p>
               </View>
             </View>
-            <View className='account-info at-row'>
-              <View className='at-col info-item'>
+            <View className="account-info at-row">
+              <View className="at-col info-item">
                 <Text>余额（元）</Text>
-                <p className='info-number'>
+                <p className="info-number">
                   {this.state.userInfo.userinfo.money}
                 </p>
               </View>
-              <View className='at-col info-item'>
+              <View className="at-col info-item">
                 <Text>积分</Text>
-                <p className='info-number'>
+                <p className="info-number">
                   {this.state.userInfo.userinfo.score}
                 </p>
               </View>
-              <View className='at-col info-item'>
+              <View className="at-col info-item">
                 <Text>优惠券</Text>
-                <p className='info-number'>
+                <p className="info-number">
                   {this.state.userInfo.userinfo.couponnum}
                 </p>
               </View>
             </View>
-            <View className='order-info at-row'>
-              <View className='at-col order-item'>
-                <AtIcon value='calendar' size='45' color='#f15233'></AtIcon>
+            <View className="order-info at-row">
+              <View className="at-col order-item">
+                <AtIcon value="calendar" size="45" color="#f15233"></AtIcon>
                 <p>全部</p>
               </View>
-              <View className='at-col order-item'>
-                <AtIcon value='calendar' size='45' color='#f15233'></AtIcon>
+              <View className="at-col order-item">
+                <AtIcon value="calendar" size="45" color="#f15233"></AtIcon>
                 <p>待付款</p>
               </View>
-              <View className='at-col order-item'>
-                <AtIcon value='calendar' size='45' color='#f15233'></AtIcon>
+              <View className="at-col order-item">
+                <AtIcon value="calendar" size="45" color="#f15233"></AtIcon>
                 <p>待发货</p>
               </View>
-              <View className='at-col order-item'>
-                <AtIcon value='calendar' size='45' color='#f15233'></AtIcon>
+              <View className="at-col order-item">
+                <AtIcon value="calendar" size="45" color="#f15233"></AtIcon>
                 <p>待收货</p>
               </View>
             </View>
-            <View className='user-tab'>
-              <AtList className='user-tab-list'>{listItems}</AtList>
+            <View className="user-tab">
+              <AtList className="user-tab-list">
+                {listItems}
+                <AtListItem
+                  onClick={this.handleTabClick.bind(this, "退出系统")}
+                  className="user-tab-item"
+                  title="退出系统"
+                  arrow="right"
+                  thumb={require("../../assets/ntcxt.png")}
+                />
+              </AtList>
             </View>
           </>
         )}
