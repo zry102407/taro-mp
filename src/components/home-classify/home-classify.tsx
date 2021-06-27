@@ -2,59 +2,50 @@ import { Component } from "react";
 import { View, Image } from "@tarojs/components";
 import "./home-classify.scss";
 
-export default class HomeClassify extends Component<{}, any> {
+export default class HomeClassify extends Component<any, any> {
   constructor(props) {
     super(props);
     this.state = {
       searchValue: "",
       height: 37,
-      iconHeight: 20
+      iconHeight: 20,
+      gridList: props.gridList
     };
   }
 
   componentDidMount() {}
 
+  componentDidShow() {}
+
   searchChange() {}
 
   render() {
+    const gridList = this.props.gridList || [];
+    const items = gridList.map(item => {
+      return (
+        <View className='at-col classify-item' key={item.CPXLDM}>
+          <Image src={`${item.titleImg}`} mode='widthFix'></Image>
+          <p>{item.name}</p>
+        </View>
+      );
+    });
+    const advList = this.props.advList || [];
+    console.log(advList)
+    const advs = advList.map(item => {
+      return (
+        <Image
+          key={item.CPXLDM}
+          src={`${item.titleImg}`}
+          mode='widthFix'
+        ></Image>
+      );
+    });
     return (
       <>
-        <View className="home-classify">
-          <View className="classify-box at-row">
-            <View className="at-col classify-item">
-              <Image
-                src={require("../../assets/101.png")}
-                mode="widthFix"
-              ></Image>
-              <p>海鲜串</p>
-            </View>
-            <View className="at-col classify-item">
-              <Image
-                src={require("../../assets/112.png")}
-                mode="widthFix"
-              ></Image>
-              <p>肉串</p>
-            </View>
-            <View className="at-col classify-item">
-              <Image
-                src={require("../../assets/123.png")}
-                mode="widthFix"
-              ></Image>
-              <p>调味串</p>
-            </View>
-            <View className="at-col classify-item">
-              <Image
-                src={require("../../assets/134.png")}
-                mode="widthFix"
-              ></Image>
-              <p>小把串</p>
-            </View>
-          </View>
-          <View className="recharge-box">
-            <Image
-              src={require("../../assets/img_Recharge.png")}
-              mode="widthFix"
-            ></Image>
+        <View className='home-classify'>
+          <View className='classify-box at-row'>{items}</View>
+          <View className='recharge-box'>
+            {advs}
           </View>
         </View>
       </>

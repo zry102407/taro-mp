@@ -114,7 +114,7 @@ export default class Login extends Component<any, any> {
             <View className='login-input at-row'>
               <AtIcon value='iphone' size='30' color='#7f848f'></AtIcon>
               <AtInput
-                name='value'
+                name='account'
                 title=''
                 className='at-col at-col--auto'
                 border={false}
@@ -127,7 +127,7 @@ export default class Login extends Component<any, any> {
             <View className='login-input at-row'>
               <AtIcon value='lock' size='30' color='#7f848f'></AtIcon>
               <AtInput
-                name='value'
+                name='password'
                 title=''
                 className='at-col at-col--auto'
                 border={false}

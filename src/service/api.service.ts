@@ -16,6 +16,12 @@ const api = {
     },
     getSubClassifyList: (params) => {
       return apiConfig.get(`${apiPrefix}/DHHandler.ashx?action=GetLblist_C`, params)
+    },
+    getIndexConfig: () => {
+      return apiConfig.get(`${apiPrefix}/IndexHandler.ashx?action=GetSyBuJu`)
+    },
+    getAlwaysBuy: (params) => {
+      return apiConfig.get(`${apiPrefix}/DHHandler.ashx?action=GetPHList_CG`, params)
     }
 }
 

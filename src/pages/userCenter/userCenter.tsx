@@ -202,7 +202,7 @@ export default class UserCenter extends Component<any, any> {
             </View>
           </>
         )}
-        <TabBar></TabBar>
+        <TabBar current={4}></TabBar>
       </View>
     );
   }

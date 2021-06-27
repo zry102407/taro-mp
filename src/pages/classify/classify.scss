@@ -1,0 +1,25 @@
+.classify {
+  .search-top {
+    position: relative;
+    margin-top: 20px;
+    .search-icon {
+      position: absolute;
+      left: 28px;
+      top: 14px;
+      margin-top: 14px;
+      font-size: 34px;
+    }
+  }
+  .at-input {
+    height: 34px;
+    background-color: #f9f9f9;
+    margin-left: 0;
+    &::after {
+      border-bottom: 0;
+    }
+    input {
+      text-indent: 100px;
+      font-size: 28px;
+    }
+  }
+}

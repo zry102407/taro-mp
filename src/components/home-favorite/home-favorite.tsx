@@ -2,7 +2,7 @@ import { Component } from "react";
 import { View, Image } from "@tarojs/components";
 import "./home-favorite.scss";
 
-export default class HomeFavorite extends Component<{}, any> {
+export default class HomeFavorite extends Component<any, any> {
   constructor(props) {
     super(props);
     this.state = {

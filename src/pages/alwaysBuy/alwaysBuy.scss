@@ -1,0 +1,34 @@
+.always-buy {
+  padding-bottom: 120px;
+  .buy-list {
+    padding: 0 38px;
+    .buy-item{
+      font-size: 32px;
+      .item-pic {
+        width: 160px;
+        height: 160px;
+        border-radius: 10px;
+        margin-right: 60px;
+      }
+      .item-title {
+        color: #000;
+        font-size: 29px;
+        font-weight: bold;
+      }
+      .item-bottom {
+        .item-price {
+          font-size: 27px;
+          color: #e09f3e;
+        }
+        .item-button {
+          float: right;
+          border-radius: 40px;
+          color: #fff;
+          background-color: #fa553b;
+          font-size: 26px;
+          padding: 0px 16px;
+        }
+      }
+    }
+  }
+}

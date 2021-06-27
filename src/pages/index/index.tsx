@@ -9,12 +9,16 @@ import HomeHeader from "../../components/home-header/home-header";
 import HomeNotice from "../../components/home-notice/home-notice";
 import HomeClassify from "../../components/home-classify/home-classify";
 import HomeFavorite from "../../components/home-favorite/home-favorite";
+import api from "../../service/api.service";
 
 export default class Index extends Component<any, any> {
   constructor(props) {
     super(props);
     this.state = {
-      bannerList: [1, 2, 3]
+      bannerList: [],
+      theme: '#fe7646',
+      gridList: [],
+      advList: []
     };
   }
   componentWillMount() {}
@@ -23,16 +27,41 @@ export default class Index extends Component<any, any> {
 
   componentWillUnmount() {}
 
-  componentDidShow() {}
+  componentDidShow() {
+    this.getConfig()
+  }
 
   componentDidHide() {}
 
+  getConfig () {
+    api.getIndexConfig().then(res => {
+      if (res && res.data) {
+        this.setState({
+          theme: res.data.data.color,
+          bannerList: (res.data.data.list.find(item => {
+            return item.CSSType === 'slide'
+          }) || {}).Arry,
+          noticeList: (res.data.data.list.find(item => {
+            return item.CSSType === 'Notice'
+          }) || {}).Arry,
+          gridList: (res.data.data.list.find(item => {
+            return item.CSSType === 'grid'
+          }) || {}).Arry,
+          advList: (res.data.data.list.find(item => {
+            return item.CSSType === 'titimg'
+          }) || {}).Arry
+        })
+      }
+    }).catch(error => {
+      console.log(error)
+    })
+  }
+
   render() {
     const swiperItems = this.state.bannerList.map(item => {
-      const src = `../../assets/banner${item}.jpg`;
       return (
-        <SwiperItem key={item}>
-          <img src={require(`../../assets/banner${item}.jpg`)} alt="" />
+        <SwiperItem key={item.CPXLDM}>
+          <img src={`${item.titleImg}`} alt="" />
         </SwiperItem>
       );
     });
@@ -42,8 +71,8 @@ export default class Index extends Component<any, any> {
         <Swiper className="lingding-swiper" circular autoplay>
           {swiperItems}
         </Swiper>
-        <HomeNotice></HomeNotice>
-        <HomeClassify></HomeClassify>
+        <HomeNotice noticeList={this.state.noticeList}></HomeNotice>
+        <HomeClassify gridList={this.state.gridList} advList={this.state.advList}></HomeClassify>
         <HomeFavorite></HomeFavorite>
         <TabBar></TabBar>
       </View>

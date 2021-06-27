@@ -1,7 +1,7 @@
 import Taro from "@tarojs/taro";
 import { Component } from "react";
 import { View, Text, Swiper, SwiperItem } from "@tarojs/components";
-import { AtSearchBar, AtTabs, AtTabsPane } from "taro-ui";
+import { AtInput, AtIcon, AtTabs, AtTabsPane } from "taro-ui";
 
 import "taro-ui/dist/style/components/button.scss"; // 按需引入
 import "./classify.scss";
@@ -98,7 +98,7 @@ export default class Classify extends Component<any, any> {
   componentWillUnmount() {}
 
   componentDidShow() {
-    this.getClassifyList()
+    this.getClassifyList();
   }
 
   componentDidHide() {}
@@ -119,34 +119,40 @@ export default class Classify extends Component<any, any> {
 
   getClassifyList() {
     const params = {
-      sybdm: this.state.storeInfo.sybdm || 9999,
-      khdm: this.state.storeInfo.khdm || 900183000003
-    }
-    api.getClassifyList(params).then(res => {
-      console.log(res)
-      this.getSubClassifyList();
-    }).catch(error => {
-      Taro.atMessage({
-        message: '获取分类失败，请稍后重试',
-        type: 'error'
+      sybdm: this.state.storeInfo.sybdm || "",
+      khdm: this.state.storeInfo.khdm || ""
+    };
+    api
+      .getClassifyList(params)
+      .then(res => {
+        console.log(res);
+        this.getSubClassifyList();
       })
-    })
+      .catch(error => {
+        Taro.atMessage({
+          message: "获取分类失败，请稍后重试",
+          type: "error"
+        });
+      });
   }
 
   getSubClassifyList() {
     const params = {
-      sybdm: this.state.storeInfo.sybdm || 9999,
-      khdm: this.state.storeInfo.khdm || 900183000003,
+      sybdm: this.state.storeInfo.sybdm || "",
+      khdm: this.state.storeInfo.khdm || "",
       YJCPLBDM: this.state.current
-    }
-    api.getSubClassifyList(params).then(res => {
-      console.log(res)
-    }).catch(error => {
-      Taro.atMessage({
-        message: '获取分类失败，请稍后重试',
-        type: 'error'
+    };
+    api
+      .getSubClassifyList(params)
+      .then(res => {
+        console.log(res);
       })
-    })
+      .catch(error => {
+        Taro.atMessage({
+          message: "获取分类失败，请稍后重试",
+          type: "error"
+        });
+      });
   }
 
   handleChange() {}
@@ -161,12 +167,26 @@ export default class Classify extends Component<any, any> {
 
   render() {
     const tabPanes = this.state.tabList.map((item, index) => {
-      return <AtTabsPane current={this.state.current} index={index}>{item.CPLBMC}</AtTabsPane>
-    })
+      return (
+        <AtTabsPane current={this.state.current} index={index}>
+          {item.CPLBMC}
+        </AtTabsPane>
+      );
+    });
     return (
       <View className='classify'>
         <View className='search-top' onClick={this.doSearch}>
-          <AtSearchBar value={this.state.value} onChange={this.handleChange} />
+          <AtInput
+            name='value'
+            placeholder="搜索想要的商品"
+            value={this.state.value}
+            onChange={this.handleChange}
+          ></AtInput>
+          <AtIcon
+            value='search'
+            color='#9a9a9a'
+            className='search-icon'
+          ></AtIcon>
         </View>
         <View className='tab-box'>
           <AtTabs
@@ -178,7 +198,7 @@ export default class Classify extends Component<any, any> {
           </AtTabs>
         </View>
         <TreeSelect list={this.state.myList} />
-        <TabBar></TabBar>
+        <TabBar current={1}></TabBar>
       </View>
     );
   }

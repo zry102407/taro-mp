@@ -10,54 +10,56 @@ interface homeNoticeType {
   noticeList: any[];
 }
 
-export default class HomeNotice extends Component<{}, homeNoticeType> {
+export default class HomeNotice extends Component<
+  { noticeList: any[] },
+  homeNoticeType
+> {
   constructor(props) {
     super(props);
     this.state = {
       searchValue: "",
       height: 37,
       iconHeight: 20,
-      noticeList: [
-        "1测试公告测试公告测试公告测试公告测试公告测试公告测试公告测试公告测试公告",
-        "2测试公告测试公告测试公告测试公告测试公告测试公告测试公告测试公告测试公告",
-        "3测试公告测试公告测试公告测试公告测试公告测试公告测试公告测试公告测试公告"
-      ]
+      noticeList: []
     };
   }
 
   componentDidMount() {}
 
+  componentDidShow() {}
+
   searchChange() {}
 
   render() {
-    const swipterItems = this.state.noticeList.map(item => {
+    const noticeList = this.props.noticeList || [];
+    const swipterItems = noticeList.map(item => {
       return (
-        <SwiperItem className="swiper-item" key={item}>
-          {item}
+        <SwiperItem className='swiper-item' key={item.CPXLDM}>
+          {item.name}
         </SwiperItem>
       );
     });
     return (
       <>
         <View
-          className="notice-box"
+          className='notice-box'
           style={{
             height: this.state.height + "px",
             lineHeight: this.state.height + "px"
           }}
         >
           <Image
-            className="notice-icon"
+            className='notice-icon'
             style={{
               height: this.state.iconHeight + "px",
               width: this.state.iconHeight + "px",
               top: "8px"
             }}
             src={require("../../assets/icon_horn.png")}
-            mode="heightFix"
+            mode='heightFix'
           ></Image>
           <Swiper
-            className="notice-msg"
+            className='notice-msg'
             circular
             autoplay
             vertical

@@ -25,7 +25,7 @@ export default class Cart extends Component<any, any> {
   render() {
     return (
       <View className="cart">
-        <TabBar></TabBar>
+        <TabBar current={2}></TabBar>
       </View>
     );
   }
