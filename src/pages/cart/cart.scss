@@ -1,2 +1,77 @@
 .cart {
+  padding-bottom: 30px;
+  .car-top {
+    height: 120px;
+    border-bottom: 1px solid #f2f2f2;
+    font-size: 36px;
+    color: #000;
+    position: relative;
+    text-align: center;
+    line-height: 120px;
+    .edit-icon {
+      position: absolute;
+      right: 22px;
+    }
+  }
+  .empty-car {
+    text-align: center;
+    color: #666;
+    margin-top: 360px;
+    font-size: 32px;
+    .empty-title {
+      font-size: 40px;
+      margin-bottom: 30px;
+    }
+    .empty-button {
+      margin-top: 60px;
+      width: 244px;
+    }
+  }
+  .car-bottom {
+    font-size: 32px;
+    position: fixed;
+    bottom: 130px;
+    border-top: 1px solid #e5e5e5;
+    height: 120px;
+    line-height: 120px;
+    color: #666;
+    .all-check {
+      width: 200px;
+      text-align: left;
+      margin-right: 20px;
+      &.at-checkbox {
+        &::before {
+          border-top: none;
+        }
+        &::after{
+          border-bottom: none
+        }
+        .at-checkbox__option {
+          height: 120px;
+          line-height: 120px;
+          .at-checkbox__option-wrap {
+            padding: 0;
+            padding-top: 40px;
+            .at-checkbox__title {
+              font-size: 32px;
+              color: inherit;
+            }
+          }
+        }
+      }
+    }
+    .total-price {
+      padding-left: 10px;
+      font-size: 40px;
+      font-weight: bold;
+    }
+    .submit-btn {
+      width: 240px;
+      color: #fff;
+      height: 120px;
+      border-radius: 0;
+      border: 0;
+      line-height: 120px;
+    }
+  }
 }
