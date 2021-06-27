@@ -7,6 +7,7 @@ export default {
     'pages/userCenter/userCenter',
     'pages/login/login',
     'pages/serve/serve',
+    'pages/detail/detail'
   ],
   tabBar: {
     custom: true,

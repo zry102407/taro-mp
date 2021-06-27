@@ -3,9 +3,9 @@ import { View, Image, Text } from "@tarojs/components";
 import Taro from '@tarojs/taro'
 
 import "taro-ui/dist/style/components/button.scss"; // 按需引入
-import "./serve.scss";
+import "./detail.scss";
 
-export default class Serve extends Component<any, any> {
+export default class Detail extends Component<any, any> {
   constructor(props) {
     super(props);
     this.state = {
@@ -28,12 +28,12 @@ export default class Serve extends Component<any, any> {
 
   render() {
     return (
-      <View className='serve-box'>
-        <View className="serve-top">
+      <View className='detail-box'>
+        <View className="detail-top">
           <Text onClick={this.back} className="back-icon"></Text>
-          <Text>联系客服</Text>
+          <Text>商品详情</Text>
         </View>
-        <View className="serve-body">
+        <View className="detail-body">
           <View className="serve-item at-row">
             <div className="serve-title">热线电话：</div>
             <div className="at-col at-col--auto">400800888</div>

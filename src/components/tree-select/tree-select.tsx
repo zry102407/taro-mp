@@ -1,6 +1,6 @@
 import Taro from '@tarojs/taro';
 import { Component } from 'react';
-import { View, Button } from '@tarojs/components';
+import { View, Button, Image } from '@tarojs/components';
 import { AtIcon } from 'taro-ui';
 import classNames from 'classnames';
 import './tree-select.scss';
@@ -86,12 +86,15 @@ class TreeSelect extends Component<any, any> {
                             (
                                 <View
                                   key={item.id}
-                                  className={classNames('rightBtn', { active: selectedList.includes(item.id) })}
+                                  className={classNames('list-item at-row', { active: selectedList.includes(item.id) })}
                                   onClick={() => {this.addSelected(item.id);}}
                                 >
-                                    <View>{item.title}</View>
-                                    <View style={{ display: selectedList.includes(item.id) ? 'flex' : 'none' }} className='checkIcon'>
-                                        <AtIcon value='check' size={32} color='rgb(58,110,244)' />
+                                    <Image src={require('../../assets/xxclogo.png')} className="item-img"></Image>
+                                    <View className="at-col at-col--auto item-detail">
+                                      <View className="item-title">烤事君小黄鱼串</View>
+                                      <View className="item-desc">5串*20包</View>
+                                      <View className="item-price">¥10.00/包</View>
+                                      <View className="item-choose">选择规格</View>
                                     </View>
                                 </View>
                             )

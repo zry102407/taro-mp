@@ -1,0 +1,34 @@
+.detail-box {
+  .detail-top {
+    position: relative;
+    text-align: center;
+    border-bottom: 1px solid #f2f2f2;
+    height: 120px;
+    font-size: 36px;
+    line-height: 120px;
+    .back-icon {
+      position: absolute;
+      left: 40px;
+      border: 1px solid #000;
+      width: 32px;
+      height: 32px;
+      transform: rotate(45deg);
+      top: 40px;
+      border-right: none;
+      border-top: none;
+    }
+  }
+  .detail-body {
+    padding: 0 5%;
+    .detail-item {
+      border-bottom: 1px dotted #e5e5e5;
+      font-size: 32px;
+      color: #666;
+      height: 110px;
+      line-height: 110px;
+      .detail-title {
+        width: 160px;
+      }
+    }
+  }
+}

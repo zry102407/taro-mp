@@ -43,7 +43,7 @@ export default class HomeHeader extends Component<{}, homeHeaderType> {
               mode="widthFix"
             ></Image>
           </View>
-          <View className="search-box at-col at-col--auto">
+          <View className="header-search at-col at-col--auto">
             <Image
               className="header-image search-icon"
               src={require("../../assets/icon_search.png")}
