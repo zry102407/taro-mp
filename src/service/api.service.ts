@@ -1,4 +1,4 @@
-const apiPrefix = "/Action";
+const apiPrefix = "https://dcx.fzldrj.com:7030/Action";
 import apiConfig from "../utils/api.config";
 
 const api = {
