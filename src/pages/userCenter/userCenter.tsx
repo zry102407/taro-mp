@@ -96,13 +96,13 @@ export default class UserCenter extends Component<any, any> {
       });
   }
 
-  handleTab(type) {
+  handleTab(type, link) {
     Taro.navigateTo({
-      url: `/pages/webview/webview?type=${type}`
+      url: `/pages/webBox/webBox?type=${type}&link=${link}`
     });
   }
 
-  handleTabClick(type) {
+  handleTabClick(type, link) {
     switch (type) {
       case "退出系统":
         this.handleExit();
@@ -111,7 +111,7 @@ export default class UserCenter extends Component<any, any> {
         this.handleServe();
         break;
       default:
-        this.handleTab(type);
+        this.handleTab(type, link);
         break;
     }
   }
@@ -123,7 +123,7 @@ export default class UserCenter extends Component<any, any> {
         return (
           <AtListItem
             key={item.zmenuname}
-            onClick={this.handleTabClick.bind(this, item.zmenuname)}
+            onClick={this.handleTabClick.bind(this, item.zmenuname, item.link)}
             className="user-tab-item"
             title={item.zmenuname}
             arrow="right"

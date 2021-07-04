@@ -18,17 +18,105 @@
       border-top: none;
     }
   }
-  .detail-body {
-    padding: 0 5%;
-    .detail-item {
-      border-bottom: 1px dotted #e5e5e5;
-      font-size: 32px;
-      color: #666;
-      height: 110px;
-      line-height: 110px;
-      .detail-title {
-        width: 160px;
+  .detail-swiper {
+    height: 750px;
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+  .detail-desc-top {
+    background-color: #f2f2f2;
+    padding: 20px 3% 0;
+    border-bottom: 1px dotted #e5e5e5;
+    .detail-title {
+      font-size: 34px;
+      font-weight: bold;
+      color: #000;
+    }
+    .detail-num {
+      font-size: 28px;
+      color: #777;
+      margin: 10px auto 20px;
+    }
+  }
+  .detail-gg {
+    padding: 20px;
+    .gg-item {
+      border-bottom: 1px solid #cbc8c8;
+      height: 70px;
+      padding-left: 20px;
+      font-size: 28px;
+      color: #a2a2a2;
+      .price {
+        color: #e09f3e;
+        font-size: 30px;
+        padding-right: 20px;
       }
+      .num-count {
+        float: right;
+        .count-icon {
+          display: inline-block;
+          color: #fff;
+          width: 40px;
+          height: 40px;
+          border-radius: 40px;
+          text-align: center;
+          line-height: 36px;
+          font-style: normal;
+          font-size: 44px;
+          font-weight: bold;
+          margin: 0 20px;
+        }
+        .icon-substract {
+          &::before {
+            content: "-";
+          }
+        }
+        .icon-plus {
+          &::before {
+            content: "+";
+          }
+        }
+      }
+    }
+  }
+  .detail-desc {
+    font-size: 28px;
+    padding: 0 40px 120px;
+  }
+  .detail-bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 120px;
+    width: 100%;
+    border-top: 1px solid #e5e5e5;
+    z-index: 10;
+    background: #fff;
+    .bottom-left {
+      float: left;
+      font-size: 28px;
+      color: #666;
+      .fun-icon {
+        width: 50%;
+        float: left;
+        padding-top: 20px;
+        text-align: center;
+        .at-icon {
+          font-size: 50px;
+        }
+      }
+    }
+    .buy-btn {
+      width: 450px;
+      color: #fff;
+      font-size: 36px;
+      border: none;
+      height: 120px;
+      border-radius: 0;
+      line-height: 120px;
+      float: right;
     }
   }
 }

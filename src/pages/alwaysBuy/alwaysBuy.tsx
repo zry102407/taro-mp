@@ -23,7 +23,25 @@ export default class AlwaysBuy extends Component<any, any> {
   componentWillUnmount() {}
 
   componentDidShow() {
-    this.getAlwaysBuy();
+    this.init();
+  }
+
+  init() {
+    const loginInfo = utils.storage.get("login_info");
+    if (loginInfo && loginInfo.token) {
+      this.setState(
+        {
+          loginInfo
+        },
+        () => {
+          this.getAlwaysBuy();
+        }
+      );
+    } else {
+      Taro.navigateTo({
+        url: "/pages/login/login"
+      });
+    }
   }
 
   componentDidHide() {}
@@ -51,12 +69,12 @@ export default class AlwaysBuy extends Component<any, any> {
 
   handleClick(item) {
     Taro.navigateTo({
-      url: `/pages/detail/detail?item=${JSON.stringify(item)}`
+      url: `/pages/detail/detail?itemId=${item.PH}`
     });
   }
 
   handleChoose(item) {
-    event.stopPropagation()
+    event.stopPropagation();
   }
 
   render() {
@@ -80,7 +98,12 @@ export default class AlwaysBuy extends Component<any, any> {
               <Text className='item-price'>
                 ¥{item.XSDJ} /{item.CGDW}
               </Text>
-              <Text className='item-button' onClick={this.handleChoose.bind(this, item)}>选择规格</Text>
+              <Text
+                className='item-button'
+                onClick={this.handleChoose.bind(this, item)}
+              >
+                选择规格
+              </Text>
             </View>
           </View>
         </View>

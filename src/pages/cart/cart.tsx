@@ -6,6 +6,7 @@ import { AtButton, AtCheckbox } from "taro-ui";
 import "taro-ui/dist/style/components/button.scss"; // 按需引入
 import "./cart.scss";
 import TabBar from "../../custom-tab-bar/custom-tab-bar";
+import { theme } from "../../utils/utils";
 
 export default class Cart extends Component<any, any> {
   constructor(props) {
@@ -13,7 +14,7 @@ export default class Cart extends Component<any, any> {
     this.state = {
       itemList: [],
       editStatus: false,
-      theme: "#FF9800",
+      theme: theme,
       checkedList: [],
       checkboxOption: [
         {

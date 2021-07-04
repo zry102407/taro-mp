@@ -2,25 +2,17 @@ import { Component } from "react";
 import { View, Image, Swiper, SwiperItem } from "@tarojs/components";
 import { AtIcon, AtInput } from "taro-ui";
 import "./home-notice.scss";
+import utils, { theme } from "../../utils/utils";
 
-interface homeNoticeType {
-  searchValue: string;
-  height: number;
-  iconHeight: number;
-  noticeList: any[];
-}
-
-export default class HomeNotice extends Component<
-  { noticeList: any[] },
-  homeNoticeType
-> {
+export default class HomeNotice extends Component<any, any> {
   constructor(props) {
     super(props);
     this.state = {
       searchValue: "",
       height: 37,
       iconHeight: 20,
-      noticeList: []
+      noticeList: [],
+      theme: theme
     };
   }
 
@@ -28,9 +20,8 @@ export default class HomeNotice extends Component<
 
   componentDidShow() {}
 
-  searchChange() {}
-
   render() {
+    const theme = utils.storage.get("theme") || this.state.theme;
     const noticeList = this.props.noticeList || [];
     const swipterItems = noticeList.map(item => {
       return (
@@ -45,7 +36,8 @@ export default class HomeNotice extends Component<
           className='notice-box'
           style={{
             height: this.state.height + "px",
-            lineHeight: this.state.height + "px"
+            lineHeight: this.state.height + "px",
+            borderColor: theme
           }}
         >
           <Image

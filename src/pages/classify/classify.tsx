@@ -9,106 +9,42 @@ import TabBar from "../../custom-tab-bar/custom-tab-bar";
 import TreeSelect from "../../components/tree-select/tree-select";
 import api from "../../service/api.service";
 import utils from "../../utils/utils";
+import { rearg } from "lodash";
 
 export default class Classify extends Component<any, any> {
   constructor(props) {
     super(props);
     this.state = {
-      myList: [
-        {
-          id: "1212121",
-          title: "日用品",
-          children: [
-            {
-              id: "32232312",
-              title: "洗发水"
-            },
-            {
-              id: "3234232",
-              title: "洗发水1"
-            },
-            {
-              id: "32243132",
-              title: "洗发水2"
-            },
-            {
-              id: "2131212312",
-              title: "洗发水3"
-            }
-          ]
-        },
-        {
-          id: "121212w2221",
-          title: "服务",
-          children: [
-            {
-              id: "3223222222312",
-              title: "洗发水222"
-            },
-            {
-              id: "3234232342432",
-              title: "洗发水3331"
-            },
-            {
-              id: "32243342132",
-              title: "洗发水4442"
-            },
-            {
-              id: "123232113324524",
-              title: "洗发水3555"
-            }
-          ]
-        },
-        {
-          id: "121212w2221",
-          title: "服务333",
-          children: [
-            {
-              id: "322322222231332",
-              title: "洗发水233322"
-            },
-            {
-              id: "323423234243222",
-              title: "洗发水3333331"
-            },
-            {
-              id: "322433421322",
-              title: "洗发水3334442"
-            },
-            {
-              id: "1232321133224524",
-              title: "洗发水3533355"
-            }
-          ]
-        }
-      ],
+      myList: [],
       value: "",
       tabList: [],
+      rightList: [],
       current: 0,
       storeInfo: {},
-      currentClassify: 0
+      currentClassify: 0,
+      loginInfo: {},
+      page: 1,
+      hasMore: true
     };
   }
   componentWillMount() {}
 
-  componentDidMount() {
-    // this.getClassifyList()
-  }
+  componentDidMount() {}
 
   componentWillUnmount() {}
 
   componentDidShow() {
-    this.getClassifyList();
+    this.init();
   }
 
   componentDidHide() {}
 
   init() {
-    const storeInfo = utils.storage.get("store_info");
-    if (storeInfo) {
+    const loginInfo = utils.storage.get("login_info") || {};
+    if (loginInfo) {
       this.setState(
         {
-          storeInfo
+          loginInfo
         },
         () => {
           this.getClassifyList();
@@ -125,7 +61,13 @@ export default class Classify extends Component<any, any> {
     api
       .getClassifyList(params)
       .then(res => {
-        console.log(res);
+        res.data.data.forEach(item => {
+          item.title = item.CPLBMC;
+        });
+        this.setState({
+          tabList: res.data.data,
+          current: this.state.current
+        });
         this.getSubClassifyList();
       })
       .catch(error => {
@@ -140,12 +82,26 @@ export default class Classify extends Component<any, any> {
     const params = {
       sybdm: this.state.storeInfo.sybdm || "",
       khdm: this.state.storeInfo.khdm || "",
-      YJCPLBDM: this.state.current
+      YJCPLBDM: this.state.tabList[this.state.current].CPLBDM
     };
     api
       .getSubClassifyList(params)
       .then(res => {
-        console.log(res);
+        res.data.data.forEach(item => {
+          item.title = item.CPLBMC;
+          item.id = item.CPLBDM;
+        });
+        this.setState(
+          {
+            myList: res.data.data,
+            currentClassify: res.data.data[0].CPLBDM,
+            hasMore: true,
+            page: 1
+          },
+          () => {
+            this.getItemList(this.state.currentClassify);
+          }
+        );
       })
       .catch(error => {
         Taro.atMessage({
@@ -155,7 +111,33 @@ export default class Classify extends Component<any, any> {
       });
   }
 
-  handleChange() {}
+  getItemList(currentClassify) {
+    let page = this.state.page;
+    const params = {
+      sybdm: this.state.storeInfo.sybdm || "",
+      khdm: this.state.storeInfo.khdm || "",
+      YJCPLBDM: this.state.tabList[this.state.current].CPLBDM,
+      CPLBDM: currentClassify,
+      pageIndex: page
+    };
+    api.getItemList(params).then(res => {
+      if (res.data.data.length) {
+        const rightList = this.state.rightList;
+        this.setState({
+          rightList: rightList.concat(res.data.data),
+          page: ++page,
+          hasMore: res.data.data.length >= 20
+        });
+      }
+    });
+  }
+
+  loadMore() {
+    if (!this.state.hasMore) {
+      return;
+    }
+    this.getItemList(this.state.currentClassify);
+  }
 
   doSearch() {
     Taro.navigateTo({
@@ -163,24 +145,26 @@ export default class Classify extends Component<any, any> {
     });
   }
 
-  handleTabClick() {}
+  handleTabClick(value) {
+    this.setState(
+      {
+        current: value
+      },
+      () => {
+        this.getSubClassifyList();
+      }
+    );
+  }
 
   render() {
-    const tabPanes = this.state.tabList.map((item, index) => {
-      return (
-        <AtTabsPane current={this.state.current} index={index}>
-          {item.CPLBMC}
-        </AtTabsPane>
-      );
-    });
     return (
       <View className='classify'>
         <View className='search-top' onClick={this.doSearch}>
           <AtInput
             name='value'
-            placeholder="搜索想要的商品"
+            placeholder='搜索想要的商品'
             value={this.state.value}
-            onChange={this.handleChange}
+            onChange={this.doSearch}
           ></AtInput>
           <AtIcon
             value='search'
@@ -190,14 +174,23 @@ export default class Classify extends Component<any, any> {
         </View>
         <View className='tab-box'>
           <AtTabs
+            scroll
             current={this.state.current}
             tabList={this.state.tabList}
             onClick={this.handleTabClick.bind(this)}
-          >
-            {tabPanes}
-          </AtTabs>
+          ></AtTabs>
         </View>
-        <TreeSelect list={this.state.myList} />
+        <TreeSelect
+          list={this.state.myList}
+          rightList={this.state.rightList}
+          selectTab={classify => {
+            this.getItemList(classify);
+          }}
+          hasMore={this.state.hasMore}
+          loadMore={() => {
+            this.loadMore();
+          }}
+        />
         <TabBar current={1}></TabBar>
       </View>
     );

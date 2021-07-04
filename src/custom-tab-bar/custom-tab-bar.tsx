@@ -1,7 +1,7 @@
 import Taro from "@tarojs/taro";
 import { Component } from "react";
 import { AtTabBar } from "taro-ui";
-import utils from "../utils/utils";
+import utils, { theme } from "../utils/utils";
 import "./custom-tab-bar.scss";
 
 export default class TabBar extends Component<any, any> {
@@ -32,7 +32,8 @@ export default class TabBar extends Component<any, any> {
           pagePath: "/pages/userCenter/userCenter"
         }
       ],
-      carNum: 0
+      carNum: 0,
+      theme: theme
     };
   }
 
@@ -44,17 +45,18 @@ export default class TabBar extends Component<any, any> {
 
   componentDidShow() {
     this.setState({
-      carNum: utils.storage.get('car_num') || 0
-    })
+      carNum: utils.storage.get("car_num") || 0
+    });
   }
 
   render() {
     const tabList = this.state.pageUrls;
+    const theme = utils.storage.get("theme") || this.state.theme;
     tabList[2].text = this.state.carNum;
     return (
       <AtTabBar
         fixed
-        selectedColor="#f15233"
+        selectedColor={theme}
         tabList={tabList}
         onClick={this.handleClick.bind(this)}
         current={this.state.current}
