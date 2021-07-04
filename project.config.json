@@ -2,7 +2,7 @@
 	"miniprogramRoot": "dist/",
 	"projectname": "lingding-mp",
 	"description": "凌顶小程序",
-	"appid": "touristappid",
+	"appid": "wx856938dfeb4f2c46",
 	"setting": {
 		"urlCheck": true,
 		"es6": false,

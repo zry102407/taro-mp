@@ -1,15 +1,27 @@
 const utils = {
   storage: {
     get: key => {
-      return localStorage.getItem(key)
-        ? JSON.parse(localStorage.getItem(key))
-        : "";
+      if (localStorage) {
+        return localStorage.getItem(key)
+          ? JSON.parse(localStorage.getItem(key))
+          : "";
+      } else if (wx && wx.getStorageSync) {
+        return wx.getStorageSync(key)
+      }
     },
     set: (key, value) => {
-      localStorage.setItem(key, JSON.stringify(value));
+      if (localStorage) {
+        localStorage.setItem(key, JSON.stringify(value));
+      } else if (wx && wx.setStorageSync) {
+        wx.setStorageSync(key, JSON.stringify(data));
+      }
     },
     removeItem: key => {
-      localStorage.removeItem(key);
+      if (localStorage) {
+        localStorage.removeItem(key);
+      } else if (wx && wx.removeStorageSync) {
+        wx.removeStorageSync(key);
+      }
     }
   }
 };

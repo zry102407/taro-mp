@@ -4,7 +4,7 @@ import { View, Text, Image, ScrollView } from "@tarojs/components";
 import { AtIcon } from "taro-ui";
 import classNames from "classnames";
 import "./tree-select.scss";
-import { theme } from "../../utils/utils";
+import utils, { theme } from "../../utils/utils";
 
 class TreeSelect extends Component<any, any> {
   constructor(props) {
@@ -51,12 +51,12 @@ class TreeSelect extends Component<any, any> {
   render() {
     const { list, rightList, styles, hasMore } = this.props;
     const { isActive, selectedList } = this.state;
-    const theme = localStorage.getItem("theme") || this.state.theme;
+    const theme = utils.storage.get("theme") || this.state.theme;
     return (
       <View style={{ ...styles, height: "calc(100vh - 165px)" }}>
-        <View className='treeSelect'>
+        <View className="treeSelect">
           {/* left-father */}
-          <View className='treeSelect-left'>
+          <View className="treeSelect-left">
             {list &&
               list.map((item, index) => (
                 <View
@@ -81,7 +81,7 @@ class TreeSelect extends Component<any, any> {
             onScrollToLower={() => {
               this.loadMore();
             }}
-            className='treeSelect-right'
+            className="treeSelect-right"
           >
             {rightList &&
               rightList.map((item, index) => (
@@ -94,21 +94,21 @@ class TreeSelect extends Component<any, any> {
                     this.itemSelected(item);
                   }}
                 >
-                  <Image src={`${item.TPWJ}`} className='item-img'></Image>
-                  <View className='at-col at-col--auto item-detail'>
-                    <View className='item-title'>{item.PM}</View>
-                    <View className='item-desc'>{item.GG}</View>
-                    <View className='item-price' style={{ color: theme }}>
+                  <Image src={`${item.TPWJ}`} className="item-img"></Image>
+                  <View className="at-col at-col--auto item-detail">
+                    <View className="item-title">{item.PM}</View>
+                    <View className="item-desc">{item.GG}</View>
+                    <View className="item-price" style={{ color: theme }}>
                       ¥{Number(item.ylxsdj || 0).toFixed(2)}/{item.CGDW}
                     </View>
-                    <View className='item-choose' style={{ background: theme }}>
+                    <View className="item-choose" style={{ background: theme }}>
                       选择规格
                     </View>
                   </View>
                 </View>
               ))}
             {!hasMore && (
-              <View className='no-more'>
+              <View className="no-more">
                 <Text>没有更多了</Text>
               </View>
             )}

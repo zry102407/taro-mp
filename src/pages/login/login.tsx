@@ -1,7 +1,7 @@
 import Taro from "@tarojs/taro";
 
 import { AtInput, AtButton, AtIcon, AtMessage, AtCheckbox } from "taro-ui";
-import { View, Image } from "@tarojs/components";
+import { View, Image, Text } from "@tarojs/components";
 import "./login.scss";
 import { Component } from "react";
 import api from "../../service/api.service";
@@ -95,63 +95,63 @@ export default class Login extends Component<any, any> {
 
   render() {
     return (
-      <View className='login-body'>
+      <View className="login-body">
         <AtMessage />
-        <View className='login-bg'>
+        <View className="login-bg">
           <Image
             src={require("../../assets/bg_userinfo.png")}
-            mode='widthFix'
+            mode="widthFix"
           ></Image>
         </View>
-        <View className='login-box'>
-          <View className='login-logo'>
+        <View className="login-box">
+          <View className="login-logo">
             <Image
               src={require("../../assets/xxclogo.png")}
-              mode='widthFix'
+              mode="widthFix"
             ></Image>
           </View>
-          <View className='login-form'>
-            <View className='login-input at-row'>
-              <AtIcon value='iphone' size='30' color='#7f848f'></AtIcon>
+          <View className="login-form">
+            <View className="login-input at-row">
+              <AtIcon value="iphone" size="30" color="#7f848f"></AtIcon>
               <AtInput
-                name='account'
-                title=''
-                className='at-col at-col--auto'
+                name="account"
+                title=""
+                className="at-col at-col--auto"
                 border={false}
-                type='text'
-                placeholder='请输入手机号'
+                type="text"
+                placeholder="请输入手机号"
                 value={this.state.account}
                 onChange={this.handleChange.bind(this, "account")}
               />
             </View>
-            <View className='login-input at-row'>
-              <AtIcon value='lock' size='30' color='#7f848f'></AtIcon>
+            <View className="login-input at-row">
+              <AtIcon value="lock" size="30" color="#7f848f"></AtIcon>
               <AtInput
-                name='password'
-                title=''
-                className='at-col at-col--auto'
+                name="password"
+                title=""
+                className="at-col at-col--auto"
                 border={false}
-                type='password'
-                placeholder='请输入密码'
+                type="password"
+                placeholder="请输入密码"
                 value={this.state.password}
                 onChange={this.handleChange.bind(this, "password")}
               />
             </View>
-            <AtButton className='login-btn' onClick={this.onLogin.bind(this)}>
+            <AtButton className="login-btn" onClick={this.onLogin.bind(this)}>
               登 录
             </AtButton>
-            <View className='login-reg'>
+            <View className="login-reg">
               {/* <label className="reg-check">
                 记住密码
                 <input type="checkbox" value={this.state.regCheck} onChange={() => {this.handleChange('regCheck', this)}} />
               </label> */}
               <AtCheckbox
-                className='reg-check'
+                className="reg-check"
                 options={this.state.checkboxOption}
                 selectedList={this.state.checkedList}
                 onChange={this.handleChange.bind(this, "checkedList")}
               ></AtCheckbox>
-              <a href='/dhxt/dhzc.aspx?tjm='>快速注册</a>
+              <Text>快速注册</Text>
             </View>
           </View>
         </View>

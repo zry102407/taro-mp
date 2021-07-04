@@ -3,7 +3,8 @@
   .login-bg {
     height: 420px;
     overflow: hidden;
-    .taro-img__widthfix {
+    .taro-img__widthfix,
+    image {
       width: 100%;
       height: 100%;
       img {
@@ -32,7 +33,8 @@
       left: 50%;
       margin-left: -80px;
       box-shadow: 0 8px 20px 0px #0000002e;
-      .taro-img__widthfix {
+      .taro-img__widthfix,
+      image {
         width: 100%;
         height: 100%;
         border-radius: 50%;
@@ -82,8 +84,8 @@
           &::before {
             border-top: none;
           }
-          &::after{
-            border-bottom: none
+          &::after {
+            border-bottom: none;
           }
           .at-checkbox__option {
             height: 38px;
